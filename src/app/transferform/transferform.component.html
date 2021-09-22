@@ -1,0 +1,124 @@
+<p>transferform works!</p>
+<form [formGroup]="transferForm" class="form-container">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Transfer Money</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="row">
+          
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>Sender Acc Number</mat-label>
+              <input (focusout)="getInfo()" (keyup.enter)="getInfo()" appNumbers 
+              formcontrolname="SenderAccNum" matinput #input placeholder="Sender Acc Number">
+              <mat-error *ngIf="transferForm.get('senderAccNumber')?.errors?.required">Sender Acc Num is empty</mat-error>
+              <mat-error *ngIf="transferForm.get('senderAccNumber')?.errors?.minlength">Min length is 15</mat-error>
+              <mat-error *ngIf="transferForm.get('senderAccNumber')?.errors?.maxlength">Max length is 15</mat-error>
+              <mat-hint align="end">{{input.value?.length || 0}}/15</mat-hint>
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <mat-form-field class="full-width" >
+              <mat-label>Sender Name</mat-label>
+              <input formcontrolname="senderName" matinput="" placeholder="sender name">
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <mat-label>Clear Balance</mat-label>
+              <input formcontrolname="clearBalance" matinput="" placeholder="clearBalance">
+            </mat-form-field>
+          </div>
+          <div class="col-md-6 ">
+                <mat-form-field class="full-width" >
+                    <mat-label>Currency</mat-label>
+                    <input formControlName="currency" matInput placeholder="currency">
+                   
+                </mat-form-field>                  
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>Recipient BIC</mat-label>
+            <input formcontrolname="recipientBic" matinput="" placeholder="Recipient BIC">
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <mat-label>Recipient Bank Name</mat-label>
+            <input formcontrolname="recipientBankName" matinput="" placeholder="Recipient Bank Name">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <mat-label>Recipient Name</mat-label>
+          <input formcontrolname="recipientName" matinput="" placeholder="Recipient Name">
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="full-width">
+          <mat-label>Recipient Acc Number</mat-label>
+          <input formcontrolname="recipientAccNumber" matinput="" placeholder="Recipient Acc Number">
+          <mat-error *ngIf="transferForm.get('recipientAccNumber')?.errors?.required">Sender Acc Num is empty</mat-error>
+              <mat-error *ngIf="transferForm.get('recipientAccNumber')?.errors?.minlength">length is less than 15</mat-error>
+              <mat-error *ngIf="transferForm.get('recipientAccNumber')?.errors?.maxlength">length is more than 15</mat-error>
+               
+        </mat-form-field>
+      </div>
+    </div>
+         
+   
+ 
+  <div class="row">
+    <div class="col-md-6">
+    <mat-form-field class="full-width">
+      <mat-label>Transfer Type</mat-label>
+      <mat-select formControlName="transferType">
+        <mat-option value="bb">Bank to Bank</mat-option>
+        <mat-option value="cc">Customer to Customer</mat-option>
+        
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="col-md-6">
+    <mat-form-field class="full-width">
+      <mat-label>Message Type</mat-label>
+      <mat-select formControlName="messageType">
+        <mat-option value="1">First option</mat-option>
+        <mat-option value="2">Second option</mat-option>
+        <mat-option value="3">third option</mat-option>
+        <mat-option value="4">fourth option</mat-option>
+        <mat-option value="5">five option</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  </div>
+  <div class="row">
+          
+    <div class="col-md-6">
+      <mat-form-field class="full-width">
+        <mat-label>Amount</mat-label>
+        <input  appNumbersOnly 
+        formcontrolname="amount" matinput="" placeholder="Amount">
+        <mat-error *ngIf="transferForm.get('amount')?.errors?.required">Amount is empty</mat-error>
+        </mat-form-field>
+    </div>
+    <div class="col-md-6">
+      <mat-form-field class="full-width" >
+        <mat-label>TotalAmount</mat-label>
+        <input formcontrolname="totalAmount" matinput="" placeholder="Total Amount">
+      </mat-form-field>
+    </div>
+  </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="onSubmit()" mat-raised-button color="primary">Submit</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>

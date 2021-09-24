@@ -1,3 +1,9 @@
-
-
-<router-outlet></router-outlet>
+<mat-toolbar class="top-bar">
+  <img routerLink="/" class="brand-logo" src="assets/bank_logo.svg" alt="bank_logo">
+  <span class="flex-fill"></span>
+  <button mat-button color="warn" (click)="auth.logout()" *ngIf="auth.isLoggedIn">Logout</button>
+  <button routerLinkActive="active" mat-stroked-button color="primary" routerLink="/login" *ngIf="!auth.isLoggedIn">Login</button>
+</mat-toolbar>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>
